@@ -4,18 +4,18 @@ session_start();
 
 if(isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = md5($_POST['password']); // Assuming passwords are stored as MD5 hashes
+    $password = md5($_POST['password']); 
 
     $query = "SELECT * FROM admin WHERE `email` = '$email' AND `password` = '$password'";
     $result = mysqli_query($conn, $query);
 
     if(mysqli_num_rows($result) == 1) {
-        // User found, redirect to dashboard or another page
+        
         $_SESSION['loggedin'] = true;
         header("Location:../addFilm/uploadMovie.php");
         exit;
     } else {
-        // User not found or incorrect password
+        
         echo "Invalid email or password.";
     }
 }
